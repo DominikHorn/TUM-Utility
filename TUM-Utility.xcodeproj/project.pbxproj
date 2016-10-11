@@ -1,0 +1,653 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B40652971DAD2F7800F12375 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40652961DAD2F7800F12375 /* AppDelegate.swift */; };
+		B40652991DAD2F7800F12375 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40652981DAD2F7800F12375 /* ViewController.swift */; };
+		B406529C1DAD2F7800F12375 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B406529A1DAD2F7800F12375 /* Main.storyboard */; };
+		B406529E1DAD2F7800F12375 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B406529D1DAD2F7800F12375 /* Assets.xcassets */; };
+		B40652A11DAD2F7800F12375 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B406529F1DAD2F7800F12375 /* LaunchScreen.storyboard */; };
+		B40652A91DAD2FC500F12375 /* WebUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40652A81DAD2FC500F12375 /* WebUtility.swift */; };
+		B4811A7C1DAF77D000233A78 /* TET_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4811A7B1DAF77D000233A78 /* TET_ios.framework */; };
+		B4811A841DAF850D00233A78 /* PDFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4811A831DAF850D00233A78 /* PDFParser.m */; };
+		B4811A871DAF893A00233A78 /* libc++.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B4811A861DAF893A00233A78 /* libc++.1.dylib */; };
+		B4811A901DB0048F00233A78 /* BetriebsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4811A8F1DB0048F00233A78 /* BetriebsDataProvider.swift */; };
+		B4811A931DB0061700233A78 /* RestaurantDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4811A921DB0061700233A78 /* RestaurantDataProvider.swift */; };
+		B4811A941DB00AE000233A78 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4811A8D1DB0043E00233A78 /* Utility.swift */; };
+		B4811A971DB02E5300233A78 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4811A961DB02E5300233A78 /* Restaurant.swift */; };
+		B4811A9B1DB02FBA00233A78 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4811A9A1DB02FBA00233A78 /* Dish.swift */; };
+		B4811A9D1DB0C41A00233A78 /* RestaurantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4811A9C1DB0C41A00233A78 /* RestaurantManager.swift */; };
+		B4811AA01DB0DF6100233A78 /* InvalidArgumentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4811A9F1DB0DF6100233A78 /* InvalidArgumentError.swift */; };
+		B49934121DB756E700AE6586 /* creme_brelee.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B49934111DB756E700AE6586 /* creme_brelee.jpg */; };
+		B49934141DB7582600AE6586 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49934131DB7582600AE6586 /* RestaurantTableViewCell.swift */; };
+		B4D4E3031DCFA5DB000F52C7 /* RestaurantManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D4E3021DCFA5DB000F52C7 /* RestaurantManagerDelegate.swift */; };
+		B4D4E3041DCFA5DB000F52C7 /* RestaurantManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D4E3021DCFA5DB000F52C7 /* RestaurantManagerDelegate.swift */; };
+		B4D4E3091DCFF13B000F52C7 /* BetriebsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D4E3081DCFF13B000F52C7 /* BetriebsParser.swift */; };
+		B4D4E30A1DCFF13B000F52C7 /* BetriebsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D4E3081DCFF13B000F52C7 /* BetriebsParser.swift */; };
+		B4E662731DB4D0FF0091939E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4211BDC1DB13E0200BE69FE /* NotificationCenter.framework */; };
+		B4E662761DB4D0FF0091939E /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E662751DB4D0FF0091939E /* TodayViewController.swift */; };
+		B4E662791DB4D0FF0091939E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4E662771DB4D0FF0091939E /* MainInterface.storyboard */; };
+		B4E6627D1DB4D0FF0091939E /* TUM-Hunger.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B4E662721DB4D0FF0091939E /* TUM-Hunger.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B4E662811DB4D41F0091939E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4211BDC1DB13E0200BE69FE /* NotificationCenter.framework */; };
+		B4E662841DB517870091939E /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4811A961DB02E5300233A78 /* Restaurant.swift */; };
+		B4E662851DB5178A0091939E /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4811A9A1DB02FBA00233A78 /* Dish.swift */; };
+		B4E662891DB6325D0091939E /* RestaurantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4811A9C1DB0C41A00233A78 /* RestaurantManager.swift */; };
+		B4E6628A1DB632EC0091939E /* RestaurantDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4811A921DB0061700233A78 /* RestaurantDataProvider.swift */; };
+		B4E6628B1DB632EF0091939E /* BetriebsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4811A8F1DB0048F00233A78 /* BetriebsDataProvider.swift */; };
+		B4E6628C1DB632F20091939E /* WebUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40652A81DAD2FC500F12375 /* WebUtility.swift */; };
+		B4E6628D1DB632F50091939E /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4811A8D1DB0043E00233A78 /* Utility.swift */; };
+		B4E6628E1DB633360091939E /* PDFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4811A831DAF850D00233A78 /* PDFParser.m */; };
+		B4E6628F1DB634340091939E /* InvalidArgumentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4811A9F1DB0DF6100233A78 /* InvalidArgumentError.swift */; };
+		B4E662901DB634570091939E /* TET_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4811A7B1DAF77D000233A78 /* TET_ios.framework */; };
+		B4E662911DB634670091939E /* libc++.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B4811A861DAF893A00233A78 /* libc++.1.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B4E6627B1DB4D0FF0091939E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B406528B1DAD2F7700F12375 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4E662711DB4D0FF0091939E;
+			remoteInfo = "TUM-Hunger";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B4211BEB1DB13E0200BE69FE /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B4E6627D1DB4D0FF0091939E /* TUM-Hunger.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B40652931DAD2F7800F12375 /* TUM-Utility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TUM-Utility.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B40652961DAD2F7800F12375 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B40652981DAD2F7800F12375 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B406529B1DAD2F7800F12375 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B406529D1DAD2F7800F12375 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B40652A01DAD2F7800F12375 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B40652A21DAD2F7800F12375 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B40652A81DAD2FC500F12375 /* WebUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebUtility.swift; sourceTree = "<group>"; };
+		B4211BDC1DB13E0200BE69FE /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		B4811A7B1DAF77D000233A78 /* TET_ios.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TET_ios.framework; sourceTree = "<group>"; };
+		B4811A811DAF850C00233A78 /* TUM-Utility-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TUM-Utility-Bridging-Header.h"; sourceTree = "<group>"; };
+		B4811A821DAF850D00233A78 /* PDFParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFParser.h; sourceTree = "<group>"; };
+		B4811A831DAF850D00233A78 /* PDFParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFParser.m; sourceTree = "<group>"; };
+		B4811A861DAF893A00233A78 /* libc++.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.1.dylib"; path = "../../../../../usr/lib/libc++.1.dylib"; sourceTree = "<group>"; };
+		B4811A8D1DB0043E00233A78 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		B4811A8F1DB0048F00233A78 /* BetriebsDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetriebsDataProvider.swift; sourceTree = "<group>"; };
+		B4811A921DB0061700233A78 /* RestaurantDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDataProvider.swift; sourceTree = "<group>"; };
+		B4811A961DB02E5300233A78 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		B4811A9A1DB02FBA00233A78 /* Dish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
+		B4811A9C1DB0C41A00233A78 /* RestaurantManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantManager.swift; sourceTree = "<group>"; };
+		B4811A9F1DB0DF6100233A78 /* InvalidArgumentError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvalidArgumentError.swift; sourceTree = "<group>"; };
+		B49934111DB756E700AE6586 /* creme_brelee.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = creme_brelee.jpg; sourceTree = "<group>"; };
+		B49934131DB7582600AE6586 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
+		B4D4E3021DCFA5DB000F52C7 /* RestaurantManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantManagerDelegate.swift; sourceTree = "<group>"; };
+		B4D4E3081DCFF13B000F52C7 /* BetriebsParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetriebsParser.swift; sourceTree = "<group>"; };
+		B4E662721DB4D0FF0091939E /* TUM-Hunger.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "TUM-Hunger.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4E662751DB4D0FF0091939E /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		B4E662781DB4D0FF0091939E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		B4E6627A1DB4D0FF0091939E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4E662821DB50CCB0091939E /* TUM-Hunger.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TUM-Hunger.entitlements"; sourceTree = "<group>"; };
+		B4E662831DB50CF80091939E /* TUM-Utility.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TUM-Utility.entitlements"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B40652901DAD2F7700F12375 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4E662811DB4D41F0091939E /* NotificationCenter.framework in Frameworks */,
+				B4811A871DAF893A00233A78 /* libc++.1.dylib in Frameworks */,
+				B4811A7C1DAF77D000233A78 /* TET_ios.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4E6626F1DB4D0FF0091939E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4E662731DB4D0FF0091939E /* NotificationCenter.framework in Frameworks */,
+				B4E662901DB634570091939E /* TET_ios.framework in Frameworks */,
+				B4E662911DB634670091939E /* libc++.1.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B406528A1DAD2F7700F12375 = {
+			isa = PBXGroup;
+			children = (
+				B40652951DAD2F7800F12375 /* TUM-Utility */,
+				B4E662741DB4D0FF0091939E /* TUM-Hunger */,
+				B4E662691DB22FCE0091939E /* Res */,
+				B40652941DAD2F7800F12375 /* Products */,
+				B4811A851DAF893A00233A78 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B40652941DAD2F7800F12375 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B40652931DAD2F7800F12375 /* TUM-Utility.app */,
+				B4E662721DB4D0FF0091939E /* TUM-Hunger.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B40652951DAD2F7800F12375 /* TUM-Utility */ = {
+			isa = PBXGroup;
+			children = (
+				B4E662831DB50CF80091939E /* TUM-Utility.entitlements */,
+				B4D4E30B1DCFF144000F52C7 /* Utility */,
+				B4811A9E1DB0DF5200233A78 /* Errors */,
+				B4811A951DB02E3900233A78 /* Restaurant */,
+				B4811A911DB0049800233A78 /* PDF */,
+				B40652961DAD2F7800F12375 /* AppDelegate.swift */,
+				B40652981DAD2F7800F12375 /* ViewController.swift */,
+				B406529A1DAD2F7800F12375 /* Main.storyboard */,
+				B406529D1DAD2F7800F12375 /* Assets.xcassets */,
+				B406529F1DAD2F7800F12375 /* LaunchScreen.storyboard */,
+				B40652A21DAD2F7800F12375 /* Info.plist */,
+				B4811A811DAF850C00233A78 /* TUM-Utility-Bridging-Header.h */,
+			);
+			path = "TUM-Utility";
+			sourceTree = "<group>";
+		};
+		B4811A851DAF893A00233A78 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B4811A7B1DAF77D000233A78 /* TET_ios.framework */,
+				B4811A861DAF893A00233A78 /* libc++.1.dylib */,
+				B4211BDC1DB13E0200BE69FE /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B4811A911DB0049800233A78 /* PDF */ = {
+			isa = PBXGroup;
+			children = (
+				B4811A821DAF850D00233A78 /* PDFParser.h */,
+				B4811A831DAF850D00233A78 /* PDFParser.m */,
+			);
+			name = PDF;
+			sourceTree = "<group>";
+		};
+		B4811A951DB02E3900233A78 /* Restaurant */ = {
+			isa = PBXGroup;
+			children = (
+				B4D4E30C1DCFF15A000F52C7 /* DataProviders */,
+				B4811A921DB0061700233A78 /* RestaurantDataProvider.swift */,
+				B4811A961DB02E5300233A78 /* Restaurant.swift */,
+				B4811A9A1DB02FBA00233A78 /* Dish.swift */,
+				B4811A9C1DB0C41A00233A78 /* RestaurantManager.swift */,
+				B4D4E3021DCFA5DB000F52C7 /* RestaurantManagerDelegate.swift */,
+			);
+			name = Restaurant;
+			sourceTree = "<group>";
+		};
+		B4811A9E1DB0DF5200233A78 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				B4811A9F1DB0DF6100233A78 /* InvalidArgumentError.swift */,
+			);
+			name = Errors;
+			sourceTree = "<group>";
+		};
+		B4D4E30B1DCFF144000F52C7 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				B40652A81DAD2FC500F12375 /* WebUtility.swift */,
+				B4811A8D1DB0043E00233A78 /* Utility.swift */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		B4D4E30C1DCFF15A000F52C7 /* DataProviders */ = {
+			isa = PBXGroup;
+			children = (
+				B4811A8F1DB0048F00233A78 /* BetriebsDataProvider.swift */,
+				B4D4E3081DCFF13B000F52C7 /* BetriebsParser.swift */,
+			);
+			name = DataProviders;
+			sourceTree = "<group>";
+		};
+		B4E662691DB22FCE0091939E /* Res */ = {
+			isa = PBXGroup;
+			children = (
+				B49934111DB756E700AE6586 /* creme_brelee.jpg */,
+			);
+			name = Res;
+			path = "TUM-HungerWidget";
+			sourceTree = "<group>";
+		};
+		B4E662741DB4D0FF0091939E /* TUM-Hunger */ = {
+			isa = PBXGroup;
+			children = (
+				B4E662821DB50CCB0091939E /* TUM-Hunger.entitlements */,
+				B4E662751DB4D0FF0091939E /* TodayViewController.swift */,
+				B49934131DB7582600AE6586 /* RestaurantTableViewCell.swift */,
+				B4E662771DB4D0FF0091939E /* MainInterface.storyboard */,
+				B4E6627A1DB4D0FF0091939E /* Info.plist */,
+			);
+			path = "TUM-Hunger";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B40652921DAD2F7700F12375 /* TUM-Utility */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B40652A51DAD2F7800F12375 /* Build configuration list for PBXNativeTarget "TUM-Utility" */;
+			buildPhases = (
+				B406528F1DAD2F7700F12375 /* Sources */,
+				B40652901DAD2F7700F12375 /* Frameworks */,
+				B40652911DAD2F7700F12375 /* Resources */,
+				B4211BEB1DB13E0200BE69FE /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B4E6627C1DB4D0FF0091939E /* PBXTargetDependency */,
+			);
+			name = "TUM-Utility";
+			productName = "TUM-Utility";
+			productReference = B40652931DAD2F7800F12375 /* TUM-Utility.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B4E662711DB4D0FF0091939E /* TUM-Hunger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4E6627E1DB4D0FF0091939E /* Build configuration list for PBXNativeTarget "TUM-Hunger" */;
+			buildPhases = (
+				B4E6626E1DB4D0FF0091939E /* Sources */,
+				B4E6626F1DB4D0FF0091939E /* Frameworks */,
+				B4E662701DB4D0FF0091939E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TUM-Hunger";
+			productName = "TUM-Hunger";
+			productReference = B4E662721DB4D0FF0091939E /* TUM-Hunger.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B406528B1DAD2F7700F12375 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Dominik Horn";
+				TargetAttributes = {
+					B40652921DAD2F7700F12375 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = ZBWW78A72B;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					B4E662711DB4D0FF0091939E = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = ZBWW78A72B;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = B406528E1DAD2F7700F12375 /* Build configuration list for PBXProject "TUM-Utility" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B406528A1DAD2F7700F12375;
+			productRefGroup = B40652941DAD2F7800F12375 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B40652921DAD2F7700F12375 /* TUM-Utility */,
+				B4E662711DB4D0FF0091939E /* TUM-Hunger */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B40652911DAD2F7700F12375 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B40652A11DAD2F7800F12375 /* LaunchScreen.storyboard in Resources */,
+				B406529E1DAD2F7800F12375 /* Assets.xcassets in Resources */,
+				B406529C1DAD2F7800F12375 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4E662701DB4D0FF0091939E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4E662791DB4D0FF0091939E /* MainInterface.storyboard in Resources */,
+				B49934121DB756E700AE6586 /* creme_brelee.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B406528F1DAD2F7700F12375 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4811A941DB00AE000233A78 /* Utility.swift in Sources */,
+				B4811A9B1DB02FBA00233A78 /* Dish.swift in Sources */,
+				B40652991DAD2F7800F12375 /* ViewController.swift in Sources */,
+				B40652971DAD2F7800F12375 /* AppDelegate.swift in Sources */,
+				B40652A91DAD2FC500F12375 /* WebUtility.swift in Sources */,
+				B4D4E3031DCFA5DB000F52C7 /* RestaurantManagerDelegate.swift in Sources */,
+				B4811A971DB02E5300233A78 /* Restaurant.swift in Sources */,
+				B4811AA01DB0DF6100233A78 /* InvalidArgumentError.swift in Sources */,
+				B4811A9D1DB0C41A00233A78 /* RestaurantManager.swift in Sources */,
+				B4811A931DB0061700233A78 /* RestaurantDataProvider.swift in Sources */,
+				B4811A841DAF850D00233A78 /* PDFParser.m in Sources */,
+				B4D4E3091DCFF13B000F52C7 /* BetriebsParser.swift in Sources */,
+				B4811A901DB0048F00233A78 /* BetriebsDataProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4E6626E1DB4D0FF0091939E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4E6628C1DB632F20091939E /* WebUtility.swift in Sources */,
+				B4E662851DB5178A0091939E /* Dish.swift in Sources */,
+				B4E662841DB517870091939E /* Restaurant.swift in Sources */,
+				B49934141DB7582600AE6586 /* RestaurantTableViewCell.swift in Sources */,
+				B4E6628F1DB634340091939E /* InvalidArgumentError.swift in Sources */,
+				B4D4E3041DCFA5DB000F52C7 /* RestaurantManagerDelegate.swift in Sources */,
+				B4E662891DB6325D0091939E /* RestaurantManager.swift in Sources */,
+				B4E6628D1DB632F50091939E /* Utility.swift in Sources */,
+				B4E662761DB4D0FF0091939E /* TodayViewController.swift in Sources */,
+				B4E6628E1DB633360091939E /* PDFParser.m in Sources */,
+				B4E6628A1DB632EC0091939E /* RestaurantDataProvider.swift in Sources */,
+				B4D4E30A1DCFF13B000F52C7 /* BetriebsParser.swift in Sources */,
+				B4E6628B1DB632EF0091939E /* BetriebsDataProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B4E6627C1DB4D0FF0091939E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4E662711DB4D0FF0091939E /* TUM-Hunger */;
+			targetProxy = B4E6627B1DB4D0FF0091939E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B406529A1DAD2F7800F12375 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B406529B1DAD2F7800F12375 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B406529F1DAD2F7800F12375 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B40652A01DAD2F7800F12375 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		B4E662771DB4D0FF0091939E /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4E662781DB4D0FF0091939E /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B40652A31DAD2F7800F12375 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B40652A41DAD2F7800F12375 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B40652A61DAD2F7800F12375 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "TUM-Utility/TUM-Utility.entitlements";
+				DEVELOPMENT_TEAM = ZBWW78A72B;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "TUM-Utility/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dhorn101.TUM-Utility";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TUM-Utility/TUM-Utility-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		B40652A71DAD2F7800F12375 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "TUM-Utility/TUM-Utility.entitlements";
+				DEVELOPMENT_TEAM = ZBWW78A72B;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "TUM-Utility/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dhorn101.TUM-Utility";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TUM-Utility/TUM-Utility-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		B4E6627F1DB4D0FF0091939E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "TUM-Hunger/TUM-Hunger.entitlements";
+				DEVELOPMENT_TEAM = ZBWW78A72B;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "TUM-Hunger/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dhorn101.TUM-Utility.TUM-Hunger";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "TUM-Utility/TUM-Utility-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		B4E662801DB4D0FF0091939E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "TUM-Hunger/TUM-Hunger.entitlements";
+				DEVELOPMENT_TEAM = ZBWW78A72B;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "TUM-Hunger/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dhorn101.TUM-Utility.TUM-Hunger";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "TUM-Utility/TUM-Utility-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B406528E1DAD2F7700F12375 /* Build configuration list for PBXProject "TUM-Utility" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B40652A31DAD2F7800F12375 /* Debug */,
+				B40652A41DAD2F7800F12375 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B40652A51DAD2F7800F12375 /* Build configuration list for PBXNativeTarget "TUM-Utility" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B40652A61DAD2F7800F12375 /* Debug */,
+				B40652A71DAD2F7800F12375 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4E6627E1DB4D0FF0091939E /* Build configuration list for PBXNativeTarget "TUM-Hunger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4E6627F1DB4D0FF0091939E /* Debug */,
+				B4E662801DB4D0FF0091939E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B406528B1DAD2F7700F12375 /* Project object */;
+}
