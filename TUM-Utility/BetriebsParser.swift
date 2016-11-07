@@ -34,6 +34,7 @@ class BetriebsParser {
             // Sort through every parsed restaurant and do post processing
             // Merge FMI and IPP menus (everything available at fmi can be taken away from ipp menu)
             let fmiRestaurant = self.getRestaurantFor(name:"FMI")
+            fmiRestaurant?.name = "FMI\n+\nIPP"
             let ippRestaurant = self.getRestaurantFor(name: "IPP")
             
             // remove all dishes from IPP that occure at the same date in FMI
