@@ -41,7 +41,7 @@ class BetriebsParser {
             for ippPair in (ippRestaurant?.foodCalendar)! {
                 ippRestaurant?.foodCalendar[ippPair.key] = ippPair.value.filter() {
                     for fmiDish in (fmiRestaurant?.getDishesFor(date: ippPair.key))! {
-                        if Utility.levenshtein(aStr: fmiDish.descriptionText, bStr: $0.descriptionText) <= lenDiff(str1: $0.descriptionText, str2: fmiDish.descriptionText) + 10 {
+                        if Utility.levenshtein(aStr: fmiDish.descriptionText, bStr: $0.descriptionText) <= lenDiff(str1: $0.descriptionText, str2: fmiDish.descriptionText) + 15 {
                             return false
                         }
                     }
@@ -161,7 +161,7 @@ class BetriebsParser {
             dishText = dishText.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
             
             // Extract price via infix operator
-            let priceMatch = try! (dishText =~~ /Utility.REGEX_LINEENDSWITHPRICE)[0]
+            let priceMatch = try! (dishText =~~ ^/Utility.REGEX_LINEENDSWITHPRICE)[0]
             let priceText: NSString = (dishText as NSString).substring(with: priceMatch.range) as NSString
             let price = priceText.doubleValue
             

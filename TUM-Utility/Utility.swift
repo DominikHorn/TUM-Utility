@@ -9,8 +9,8 @@
 import Foundation
 
 // Define prefix operator to convert string to regex
-prefix operator /
-prefix func / (pattern:String) throws -> NSRegularExpression {
+prefix operator ^/
+prefix func ^/ (pattern:String) throws -> NSRegularExpression {
     return try NSRegularExpression(pattern: pattern, options:
         NSRegularExpression.Options.dotMatchesLineSeparators)
 }
@@ -60,11 +60,11 @@ class Utility: NSObject {
     }
     
     class func lineIsPartOfNumberedList(string: String) -> Bool {
-        return try! string =~ /REGEX_NUMBEREDLIST
+        return try! string =~ ^/REGEX_NUMBEREDLIST
     }
     
     class func lineEndsWithPrice(line: String) -> Bool {
-        return try! line =~ /REGEX_LINEENDSWITHPRICE
+        return try! line =~ ^/REGEX_LINEENDSWITHPRICE
     }
     
     /// Checks whether the date exists and is within today

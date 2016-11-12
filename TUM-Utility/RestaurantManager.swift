@@ -2,6 +2,7 @@
 //  RestaurantManager.swift
 //  TUM-Utility
 //
+
 //  Created by Dominik Horn on 14.10.16.
 //  Copyright © 2016 Dominik Horn. All rights reserved.
 //
@@ -78,7 +79,7 @@ class RestaurantManager {
     
     /// Loads data
     private func loadData() {
-        // Fetch data from userdefaults (check for nil)
+        // Fetch data from userdefaults (check for nil -> asyncRefresh if nil)
         guard let data = UserDefaults(suiteName: "group.tum")?.object(forKey: self.restaurantsKey) as? Data else {
             self.asyncRefreshBackend()
             return
@@ -90,7 +91,10 @@ class RestaurantManager {
             self.restaurants = restaurants
         }
         
-        // Refresh asynchronously in the background
+        // Notify delegate
+        self.delegate.newDataArrived?()
+        
+        // Refresh asynchronously in the background to make sure we're up to date
         self.asyncRefreshBackend()
     }
     

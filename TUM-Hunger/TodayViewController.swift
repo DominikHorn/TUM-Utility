@@ -20,18 +20,26 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
     
     /// RestaurantManager for the widget
-    private lazy var restaurantManager: RestaurantManager = RestaurantManager(delegate: self)
+    private var restaurantManager: RestaurantManager?
+    
+    /// Previous table height UserDefaults key
+    private let tableRowHeightKey = "previousWidgetTableHeight"
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.restaurantManager = RestaurantManager(delegate: self)
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Load cells from nib
         let cell: RestaurantTableViewCell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell") as! RestaurantTableViewCell
         
         // Retrieve restaurant
-        let restaurant = self.restaurantManager.restaurants[indexPath.row]
-        cell.restaurantNameLabel?.text = restaurant.name
+        let restaurant = self.restaurantManager?.restaurants[indexPath.row]
+        cell.restaurantNameLabel?.text = restaurant?.name
         
         // Add all the dishes
-        cell.add(dishes: getNextApplicableDishesFor(restaurant: restaurant))
+        cell.add(dishes: getNextApplicableDishesFor(restaurant: restaurant!))
         
         return cell
     }
@@ -45,10 +53,18 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         
         // Enable dynamic cell row heights
         self.tableView?.rowHeight = UITableViewAutomaticDimension;
-        self.tableView?.estimatedRowHeight = 3 * 35.0;
         
-        // Call initially on boot
-        newDataArrived()
+        // try to load row height from userdefaults
+        if let previousRowHeight = UserDefaults(suiteName: "group.tum")?.float(forKey: tableRowHeightKey) {
+            self.tableView?.estimatedRowHeight = CGFloat(previousRowHeight)
+        } else {
+            self.tableView?.estimatedRowHeight = 300
+        }
+        
+        // Boot state
+        self.messageLabel?.isHidden = false
+        self.messageLabel?.text = "Ich lade Daten aus dem Internetz 👾"
+        self.tableView?.isHidden = true
     }
     
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
@@ -61,8 +77,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     }
     
     func widgetPerformUpdate(completionHandler: @escaping ((NCUpdateResult) -> Void)) {
-        // Refresh backend
-        self.restaurantManager.asyncRefreshBackend()
+        // Refresh backend TODO: since this is called on boot, restaurantManager will refresh twice...
+        // self.restaurantManager.asyncRefreshBackend()
         
         // call completion handler
         completionHandler(NCUpdateResult.newData)
@@ -74,7 +90,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
 //        let dateFormatter = DateFormatter()
 //        dateFormatter.locale = Locale(identifier: "de_DE")
 //        dateFormatter.dateFormat = "dd.MM.yyyy"
-//        let date = dateFormatter.date(from: "4.11.2016")
+//        let date = dateFormatter.date(from: "11.11.2016")
         
         // TODO: intelligently select monday on saturday and sunday!
         return restaurant.getDishesFor(date: Date())
@@ -84,7 +100,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     private func getValidRestaurantCount() -> Int {
         // Count all restaurants that have dishes
         var counter = 0
-        for restaurant in self.restaurantManager.restaurants {
+        for restaurant in (self.restaurantManager?.restaurants)! {
             if getNextApplicableDishesFor(restaurant: restaurant).count > 0 {
                 counter += 1
             }
@@ -109,24 +125,41 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     
     func newDataArrived() {
         DispatchQueue.main.async() {
+            // Refresh table view
             self.tableView?.reloadData()
-            
-            // Change display depending on valid restaurant count
-            if self.getValidRestaurantCount() == 0 {
-                // Hide "Show more/less" button
-                self.extensionContext?.widgetLargestAvailableDisplayMode = .compact
+        
+            // Hacky way to achieve this but there is no official api! :(... This works because tableView.reloadData() will schedule tasks on the main thread, making it busy. By the time this async{} block is exectuted tableView's reload code will have finished. Hence this "detects" when the reload is done...
+            DispatchQueue.main.async {
+                // Get tableView height
+                let tableViewHeight = (self.tableView?.contentSize.height)!
                 
-                // Hide/Show appropriate views
-                self.tableView?.isHidden = true
-                self.messageLabel?.text = "Heute gibt es anscheinend\nnichts zu essen 😧"
-                self.messageLabel?.isHidden = false
-            } else {
-                // Default state
-                self.messageLabel?.isHidden = true
-                self.tableView?.isHidden = false
+                // Reset preferred content size for self
+                self.preferredContentSize = CGSize(width: 0, height: Double(tableViewHeight))
                 
-                // Display "Show more/less" button
-                self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
+                // Store in user defaults for next boot
+                if self.getValidRestaurantCount() > 0 {
+                    let rowHeight = tableViewHeight / CGFloat(self.getValidRestaurantCount())
+                    self.tableView?.estimatedRowHeight = rowHeight
+                    UserDefaults(suiteName: "group.tum")?.set(rowHeight, forKey: self.tableRowHeightKey)
+                }
+                
+                // Change display depending on valid restaurant count
+                if self.getValidRestaurantCount() == 0 {
+                    // Hide "Show more/less" button
+                    self.extensionContext?.widgetLargestAvailableDisplayMode = .compact
+                    
+                    // Hide/Show appropriate views
+                    self.tableView?.isHidden = true
+                    self.messageLabel?.text = "Heute gibt es anscheinend\nnichts zu essen 😧"
+                    self.messageLabel?.isHidden = false
+                } else {
+                    // Default state
+                    self.messageLabel?.isHidden = true
+                    self.tableView?.isHidden = false
+                    
+                    // Display "Show more/less" button
+                    self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
+                }
             }
         }
     }
