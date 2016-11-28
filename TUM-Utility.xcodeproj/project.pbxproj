@@ -13,6 +13,8 @@
 		B406529E1DAD2F7800F12375 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B406529D1DAD2F7800F12375 /* Assets.xcassets */; };
 		B40652A11DAD2F7800F12375 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B406529F1DAD2F7800F12375 /* LaunchScreen.storyboard */; };
 		B40652A91DAD2FC500F12375 /* WebUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40652A81DAD2FC500F12375 /* WebUtility.swift */; };
+		B421CE1F1DD7876100B7D487 /* MensaDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B421CE1E1DD7876100B7D487 /* MensaDataProvider.swift */; };
+		B421CE201DD7876100B7D487 /* MensaDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B421CE1E1DD7876100B7D487 /* MensaDataProvider.swift */; };
 		B4811A7C1DAF77D000233A78 /* TET_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4811A7B1DAF77D000233A78 /* TET_ios.framework */; };
 		B4811A841DAF850D00233A78 /* PDFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4811A831DAF850D00233A78 /* PDFParser.m */; };
 		B4811A871DAF893A00233A78 /* libc++.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B4811A861DAF893A00233A78 /* libc++.1.dylib */; };
@@ -81,6 +83,7 @@
 		B40652A21DAD2F7800F12375 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B40652A81DAD2FC500F12375 /* WebUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebUtility.swift; sourceTree = "<group>"; };
 		B4211BDC1DB13E0200BE69FE /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		B421CE1E1DD7876100B7D487 /* MensaDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MensaDataProvider.swift; sourceTree = "<group>"; };
 		B4811A7B1DAF77D000233A78 /* TET_ios.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TET_ios.framework; sourceTree = "<group>"; };
 		B4811A811DAF850C00233A78 /* TUM-Utility-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TUM-Utility-Bridging-Header.h"; sourceTree = "<group>"; };
 		B4811A821DAF850D00233A78 /* PDFParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFParser.h; sourceTree = "<group>"; };
@@ -222,6 +225,7 @@
 			children = (
 				B4811A8F1DB0048F00233A78 /* BetriebsDataProvider.swift */,
 				B4D4E3081DCFF13B000F52C7 /* BetriebsParser.swift */,
+				B421CE1E1DD7876100B7D487 /* MensaDataProvider.swift */,
 			);
 			name = DataProviders;
 			sourceTree = "<group>";
@@ -368,6 +372,7 @@
 				B4811A941DB00AE000233A78 /* Utility.swift in Sources */,
 				B4811A9B1DB02FBA00233A78 /* Dish.swift in Sources */,
 				B40652991DAD2F7800F12375 /* ViewController.swift in Sources */,
+				B421CE1F1DD7876100B7D487 /* MensaDataProvider.swift in Sources */,
 				B40652971DAD2F7800F12375 /* AppDelegate.swift in Sources */,
 				B40652A91DAD2FC500F12375 /* WebUtility.swift in Sources */,
 				B4D4E3031DCFA5DB000F52C7 /* RestaurantManagerDelegate.swift in Sources */,
@@ -388,6 +393,7 @@
 				B4E6628C1DB632F20091939E /* WebUtility.swift in Sources */,
 				B4E662851DB5178A0091939E /* Dish.swift in Sources */,
 				B4E662841DB517870091939E /* Restaurant.swift in Sources */,
+				B421CE201DD7876100B7D487 /* MensaDataProvider.swift in Sources */,
 				B49934141DB7582600AE6586 /* RestaurantTableViewCell.swift in Sources */,
 				B4E6628F1DB634340091939E /* InvalidArgumentError.swift in Sources */,
 				B4D4E3041DCFA5DB000F52C7 /* RestaurantManagerDelegate.swift in Sources */,

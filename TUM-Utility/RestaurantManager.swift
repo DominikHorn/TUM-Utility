@@ -21,8 +21,11 @@ class RestaurantManager {
     /// Buffer used durnig async refresh
     private var newRestaurantDataBuffer: [Restaurant]?
     
-    /// Data sources
+    /// Data sources (DataProvider : (true -> refreshed)
     private var datasources: [RestaurantDataProvider]
+    
+    /// Used to keep track of what has already been refreshed. TODO: refactor
+    private var refreshingSourcesCounter = 0
     
     /// Delegate
     private var delegate: RestaurantManagerDelegate
@@ -36,6 +39,7 @@ class RestaurantManager {
         
         // Add all data sources that we need
         self.datasources.append(BetriebsDataProvider())
+        self.datasources.append(MensaDataProvider())
         
         // Load data (quickload from userdefaults, async refresh in background)
         self.loadData()
@@ -51,6 +55,9 @@ class RestaurantManager {
         // Reset newRestaurantDataBuffer
         self.newRestaurantDataBuffer = []
         
+        // Reset refreshing sources counter
+        self.refreshingSourcesCounter = self.datasources.count
+        
         // Refresh in background
         DispatchQueue.global(qos: .userInteractive).async {
             // Notify delegate
@@ -58,15 +65,47 @@ class RestaurantManager {
             
             // refresh each data source individually
             self.datasources.forEach() {(dataSource) in
-                // Invalidate data source
-                dataSource.invalidate()
-                
                 // Asynchronously refresh in background
                 DispatchQueue.global(qos: .userInteractive).async {
                     dataSource.refreshData(completionHandler: self.dataSourceRefreshed)
                 }
             }
         }
+    }
+    
+    /// Retrieves "amount" of restaurants nearest to location
+    func getRestaurantsNearestTo(latitude: Double, longditude: Double, amount: Int) -> [Restaurant] {
+        // if we don't have any restaurants, just return an empty array
+        guard self.restaurants.count > 0 else {
+            return []
+        }
+
+        // TODO: implement better
+        var nearestRestaurants = [Restaurant]()
+        
+        for _ in 0..<amount {
+            var minDistance = 90000000.0 // Assume that no distance greater than 90000 km exists on earth -> TODO: come up with better way!
+            var closestRestaurant: Restaurant? = nil
+            for restaurant in self.restaurants {
+                guard nearestRestaurants.filter({$0 === restaurant}).count == 0 else {
+                    continue
+                }
+                
+                // Distance to restaurant
+                let distance = Utility.haversineDistance(latitude1: latitude, longditude1: longditude, latitude2: restaurant.latitude, longditude2: restaurant.longditude)
+                
+                // is it closer than minDistance?
+                if distance < minDistance {
+                    minDistance = distance
+                    closestRestaurant = restaurant
+                }
+            }
+            
+            // TODO: remove force unwrap since it's obviously not safe
+            nearestRestaurants.append(closestRestaurant!)
+        }
+        
+        return nearestRestaurants
     }
     
     /// Sets restaurants and writes to user defaults
@@ -79,19 +118,19 @@ class RestaurantManager {
     
     /// Loads data
     private func loadData() {
-        // Fetch data from userdefaults (check for nil -> asyncRefresh if nil)
+        // Fetch data from userdefaults (check for nil -> asyncRefresh immediately if nil)
         guard let data = UserDefaults(suiteName: "group.tum")?.object(forKey: self.restaurantsKey) as? Data else {
             self.asyncRefreshBackend()
             return
         }
         
-        // We have to load data synchronously
+        // Unarchive user defaults data
         if let restaurants = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Restaurant] {
-            // Use dequeued data, don't refresh in background
+            // Use dequeued data for now. Refresh in background anyways
             self.restaurants = restaurants
         }
         
-        // Notify delegate
+        // Notify delegate that we have data
         self.delegate.newDataArrived?()
         
         // Refresh asynchronously in the background to make sure we're up to date
@@ -100,23 +139,30 @@ class RestaurantManager {
     
     // TODO: is this thread safe?!
     /// Called when a dataSource was successfully refreshed (Ugly code but necessary)
-    private func dataSourceRefreshed(restaurants: [Restaurant]) {
+    private func dataSourceRefreshed(restaurants: [Restaurant]?, caller: RestaurantDataProvider) {
         // Error prevention
         guard self.newRestaurantDataBuffer != nil else {
             print("NewRestaurantDataBuffer unexpectedly nil!")
             return
         }
         
+        
         // Start synchronized
         synchronized(self.delegate) {
-            // Append data to restaurantBuffer
-            restaurants.forEach() {
-                // TODO: may we add to restaurantsBuffer instead?!
-                self.newRestaurantDataBuffer?.append($0)
+            // Unwrap and add to restaurants if needed
+            if let restaurants = restaurants {
+                // Append data to restaurantBuffer
+                restaurants.forEach() {
+                    // TODO: may we add to restaurantsBuffer instead?!
+                    self.newRestaurantDataBuffer?.append($0)
+                }
             }
             
-            // Filter for every data source that is not up to date.
-            if self.datasources.filter({ !$0.isUpToDate() }).count == 0 {
+            // Decrement counter
+            self.refreshingSourcesCounter -= 1
+            
+            // TODO: Keep a record of which datasource called back and use that instead of this bullshit method!
+            if self.refreshingSourcesCounter == 0 {
                 // Data refresh has finished -> notify delegate
                 self.delegate.asyncRefreshFinished?()
                 

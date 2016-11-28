@@ -19,7 +19,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     /// View used to display that we're background refreshing
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
     
-    /// RestaurantManager for the widget
+    /// RestaurantManager for the widget TODO: only use restaurants that are (near my location/Selected in app/Near selected location in app) 
     private var restaurantManager: RestaurantManager?
     
     /// Previous table height UserDefaults key
@@ -34,9 +34,10 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         // Load cells from nib
         let cell: RestaurantTableViewCell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell") as! RestaurantTableViewCell
         
+        // TODO: remove fixed stuff / Garching location 48.264465, 11.670897
         // Retrieve restaurant
-        let restaurant = self.restaurantManager?.restaurants[indexPath.row]
-        cell.restaurantNameLabel?.text = restaurant?.name
+        let restaurant = self.restaurantManager?.getRestaurantsNearestTo(latitude: 48.264465, longditude: 11.670897, amount: 5)[indexPath.row]
+        cell.restaurantNameLabel?.text = restaurant?.shortHandName
         
         // Add all the dishes
         cell.add(dishes: getNextApplicableDishesFor(restaurant: restaurant!))
@@ -45,7 +46,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return getValidRestaurantCount()
+        return getRestaurantsToDisplay().count
     }
     
     override func viewDidLoad() {
@@ -86,27 +87,19 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     
     // Returns a list of applicable dishes (could be todays dishes or the next ones available during weekend)
     private func getNextApplicableDishesFor(restaurant: Restaurant) -> [Dish] {
-        /// TODO: change this to choose current date
 //        let dateFormatter = DateFormatter()
 //        dateFormatter.locale = Locale(identifier: "de_DE")
 //        dateFormatter.dateFormat = "dd.MM.yyyy"
-//        let date = dateFormatter.date(from: "11.11.2016")
-        
+//        let date = dateFormatter.date(from: "28.11.2016")!
+
         // TODO: intelligently select monday on saturday and sunday!
         return restaurant.getDishesFor(date: Date())
     }
     
     /// Counts and returns all restaurants that have applicable dishes
-    private func getValidRestaurantCount() -> Int {
-        // Count all restaurants that have dishes
-        var counter = 0
-        for restaurant in (self.restaurantManager?.restaurants)! {
-            if getNextApplicableDishesFor(restaurant: restaurant).count > 0 {
-                counter += 1
-            }
-        }
-        
-        return counter
+    private func getRestaurantsToDisplay() -> [Restaurant] {
+        // TODO: remove fixed stuff / Garching location 48.264465, 11.670897
+        return (self.restaurantManager?.getRestaurantsNearestTo(latitude: 48.264465, longditude: 11.670897, amount: 5))!
     }
     
     func asyncRefreshStarted() {
@@ -135,16 +128,19 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
                 
                 // Reset preferred content size for self
                 self.preferredContentSize = CGSize(width: 0, height: Double(tableViewHeight))
-                
+
+                // Restaurant count
+                let validRestaurantCount = self.getRestaurantsToDisplay().count
+
                 // Store in user defaults for next boot
-                if self.getValidRestaurantCount() > 0 {
-                    let rowHeight = tableViewHeight / CGFloat(self.getValidRestaurantCount())
+                if validRestaurantCount > 0 {
+                    let rowHeight = tableViewHeight / CGFloat(validRestaurantCount)
                     self.tableView?.estimatedRowHeight = rowHeight
                     UserDefaults(suiteName: "group.tum")?.set(rowHeight, forKey: self.tableRowHeightKey)
                 }
                 
                 // Change display depending on valid restaurant count
-                if self.getValidRestaurantCount() == 0 {
+                if validRestaurantCount == 0 {
                     // Hide "Show more/less" button
                     self.extensionContext?.widgetLargestAvailableDisplayMode = .compact
                     

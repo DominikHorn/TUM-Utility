@@ -1,0 +1,10 @@
+# Get general Mensa information:
+curl -H "X-DEVICE-ID: 0098123090123" https://tumcabe.in.tum.de/Api/mensen
+
+# Get specific dish information:
+# -> Change "all" to id to retrieve specific mensa information
+http://lu32kap.typo3.lrz.de/mensaapp/exportDB.php?mensa_id=all
+
+# Retrieve html:
+# -> 431 may be replaced with any mensaID
+http://www.studentenwerk-muenchen.de/mensa/speiseplan/speiseplan_431_-de.html

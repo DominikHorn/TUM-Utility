@@ -21,14 +21,8 @@ class BetriebsDataProvider : RestaurantDataProvider {
     /// Web utility used to download and store the pdfs
     private let webUtility: WebUtility = WebUtility()
     
-    /// Variable keeping track of whether or not we are up to date
-    private var isUpToDateVar: Bool
-    
-    /// Buffer for the restaurants that this handler parses
-    private var restaurantsBuffer: [Restaurant]
-    
     /// Callback invoked when we are refreshed
-    private var callback: (([Restaurant]) -> ())?
+    private var callback: (([Restaurant]?, RestaurantDataProvider) -> ())?
     
     /// Amount of running downloads
     private var runningDownloads: Int
@@ -38,8 +32,6 @@ class BetriebsDataProvider : RestaurantDataProvider {
     
     init() {
         self.runningDownloads = 0
-        self.isUpToDateVar = false
-        self.restaurantsBuffer = []
         self.betriebsParser = BetriebsParser()
     
         // Create our directory if it's not present
@@ -54,7 +46,7 @@ class BetriebsDataProvider : RestaurantDataProvider {
         }
     }
     
-    func refreshData(completionHandler: @escaping ([Restaurant]) -> ()) {
+    func refreshData(completionHandler: @escaping ([Restaurant]?, RestaurantDataProvider) -> ()) {
         // make sure we are only refreshing when definitely needed
         guard self.callback == nil else {
             print("Error: can not refresh BetriebsPDFHandler while it is being refreshed!")
@@ -62,7 +54,6 @@ class BetriebsDataProvider : RestaurantDataProvider {
         }
         
         // Reset everything for new refresh
-        self.isUpToDateVar = false
         self.callback = completionHandler
         self.runningDownloads = 0
         
@@ -82,7 +73,7 @@ class BetriebsDataProvider : RestaurantDataProvider {
             }
         }
         
-        // Clear out every pdf that is not available online (prevent flash storage consumption)
+        // Clear out every pdf that is not available online (prevent unreasonable storage consumption)
         do {
             try FileManager.default.contentsOfDirectory(atPath: betriebsPDFSaveDirectory.path).forEach() {
                 (localFile) in
@@ -113,26 +104,13 @@ class BetriebsDataProvider : RestaurantDataProvider {
         }
     }
     
-    func invalidate() {
-        self.isUpToDateVar = false
-    }
-    
-    func isUpToDate() -> Bool {
-        return isUpToDateVar
-    }
-    
     private func getName(fromPath path: String) -> String {
         return (URL(string: path)?.lastPathComponent)!
     }
     
     private func finishRefresh() {
-        // TODO: refactor so that reordering these lines does not lead to a bug!
-        
-        // Set here to make sure that isUpToDate() actually returns the propper value
-        self.isUpToDateVar = true
-        
         // Callback
-        self.callback?(self.betriebsParser.parseFiles(at: betriebsPDFSaveDirectory.path))
+        self.callback?(self.betriebsParser.parseFiles(at: betriebsPDFSaveDirectory.path), self)
 
         // Allow further refreshes
         self.callback = nil

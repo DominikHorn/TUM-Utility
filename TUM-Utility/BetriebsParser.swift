@@ -12,6 +12,10 @@ class BetriebsParser {
     /// Parser used for parsing pdf
     private let pdfParser: PDFParser
     
+    /// Hardcoded longditude and latitude and address of fmi and ipp
+    private let geoLocations: [String : (longditude: Double, latitude: Double)] = ["FMI" : (11.667535, 48.262461), "IPP" : (11.678796, 48.265425)]
+    private let addresses: [String : String] = ["FMI" : "Boltzmannstraße 3, 85748 Garching bei München", "IPP" : "Boltzmannstraße 2, 85748 Garching bei München"]
+    
     /// Used to keep trac of parsed restaurants
     private var parsedRestaurants: [Restaurant]
     
@@ -211,7 +215,7 @@ class BetriebsParser {
         }
         
         // If we haven't returned, there is no restaurant with that name yet. Create one!
-        self.parsedRestaurants.append(Restaurant(name: name))
+        self.parsedRestaurants.append(Restaurant(name: name, shortHandName: name, longditude: (self.geoLocations[name]?.longditude)!, latitude: (self.geoLocations[name]?.latitude)!, address: self.addresses[name]!))
         
         // Recursively return because this is fancy
         return self.getRestaurantFor(name: name)

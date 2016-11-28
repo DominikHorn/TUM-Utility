@@ -49,20 +49,43 @@ class Utility: NSObject {
     static let REGEX_NUMBEREDLIST = "^(\\d+)\\."
     static let REGEX_LINEENDSWITHPRICE = "\\s([0-9]+)\\.[0-9][0-9]"
     
+    /// Calculates distance between two sets of latitude/longditude
+    class func haversineDistance(latitude1: Double, longditude1: Double, latitude2: Double, longditude2: Double) -> Double {
+        // Approximate earth radius (exakt enough for our purposes)
+        let r = 6372.8
+        let deltaLatitude = toRadians(degrees: latitude2 - latitude1)
+        let deltaLongditude = toRadians(degrees: longditude2 - longditude1)
+        let lat1 = toRadians(degrees: latitude1)
+        let lat2 = toRadians(degrees: latitude2)
+        
+        let a = sin(deltaLatitude / 2) * sin(deltaLatitude / 2) + sin(deltaLongditude / 2) * sin(deltaLongditude / 2) * cos(lat1) * cos(lat2);
+        let c = 2 * asin(sqrt(a))
+        return r * c
+    }
+    
+    /// Converts degrees to radians
+    class func toRadians(degrees: Double) -> Double {
+        return degrees * Double.pi / 180.0
+    }
+    
+    /// Retrieves documents directory
     class func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0]
         return documentsDirectory
     }
     
+    /// Retrieves app group documents directory
     class func getAppGroupDocumentsDirectory() -> URL {
         return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.tum")!
     }
     
+    /// Checks against NUMBEREDLIST Regex
     class func lineIsPartOfNumberedList(string: String) -> Bool {
         return try! string =~ ^/REGEX_NUMBEREDLIST
     }
     
+    /// Checks agains LINEENDSWITHPRICE Regex
     class func lineEndsWithPrice(line: String) -> Bool {
         return try! line =~ ^/REGEX_LINEENDSWITHPRICE
     }
