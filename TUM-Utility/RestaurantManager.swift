@@ -17,7 +17,7 @@ class RestaurantManager {
     
     /// UserDefaults keys
     private let restaurantsKey = "restaurants"
-
+    
     /// Buffer used durnig async refresh
     private var newRestaurantDataBuffer: [Restaurant]?
     
@@ -79,7 +79,7 @@ class RestaurantManager {
         guard self.restaurants.count > 0 else {
             return []
         }
-
+        
         // TODO: implement better
         var nearestRestaurants = [Restaurant]()
         
@@ -94,15 +94,17 @@ class RestaurantManager {
                 // Distance to restaurant
                 let distance = Utility.haversineDistance(latitude1: latitude, longditude1: longditude, latitude2: restaurant.latitude, longditude2: restaurant.longditude)
                 
-                // is it closer than minDistance?
-                if distance < minDistance {
+                // is it closer than minDistance? (Only consider restaurants that actually provide dishes currently)
+                if distance < minDistance && restaurant.getDishesFor(date: Date()).count > 0{
                     minDistance = distance
                     closestRestaurant = restaurant
                 }
             }
             
-            // TODO: remove force unwrap since it's obviously not safe
-            nearestRestaurants.append(closestRestaurant!)
+            // Append closest restaurant if one is found)
+            if let closestRestaurant = closestRestaurant {
+                nearestRestaurants.append(closestRestaurant)
+            }
         }
         
         return nearestRestaurants

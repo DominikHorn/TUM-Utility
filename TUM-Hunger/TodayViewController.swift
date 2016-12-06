@@ -99,7 +99,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     /// Counts and returns all restaurants that have applicable dishes
     private func getRestaurantsToDisplay() -> [Restaurant] {
         // TODO: remove fixed stuff / Garching location 48.264465, 11.670897
-        return (self.restaurantManager?.getRestaurantsNearestTo(latitude: 48.264465, longditude: 11.670897, amount: 5))!
+        return (self.restaurantManager?.getRestaurantsNearestTo(latitude: 48.264465, longditude: 11.670897, amount: 3))!
     }
     
     func asyncRefreshStarted() {
@@ -117,12 +117,18 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     }
     
     func newDataArrived() {
+        print("New Data has arrived!")
+
         DispatchQueue.main.async() {
+            print("Reloading tableView Data")
             // Refresh table view
             self.tableView?.reloadData()
+            print("Done executing reloadData() method on current thread")
         
             // Hacky way to achieve this but there is no official api! :(... This works because tableView.reloadData() will schedule tasks on the main thread, making it busy. By the time this async{} block is exectuted tableView's reload code will have finished. Hence this "detects" when the reload is done...
             DispatchQueue.main.async {
+                print("Updating stuff after reloading tableView")
+
                 // Get tableView height
                 let tableViewHeight = (self.tableView?.contentSize.height)!
                 
